@@ -10,7 +10,9 @@
 
 void enableADC10Subsystem();
 void initLEDs();
-void turnLeftSensorOn();
-void turnRightSensorOn();
+unsigned int getLeftSensorReading();
+unsigned int getRightSensorReading();
+void isLeftSensorCloseToWall();
+void isRightSensorCloseToWall();
 
 #endif /* SENSOR_H_ */

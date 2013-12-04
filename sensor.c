@@ -21,22 +21,40 @@ void initLEDs()
 	  P1DIR |= BIT6;							// Set P1.6 to output direction
 }
 
-void turnLeftSensorOn()
+unsigned int getLeftSensorReading()
 {
 	  ADC10CTL0 &= ~ENC; 						//clearing core, stop the sample and conversion sequence
 	  ADC10CTL1 = INCH_4;                       // input A4
 	  ADC10AE0 |= BIT4;                         // PA.1 ADC option select
 	  ADC10CTL0 |= ENC + ADC10SC;            	// Sampling and conversion start, do this for each sensor
 	  __bis_SR_register(CPUOFF + GIE);          // LPM0, ADC10_ISR will force exit
+	  return ADC10MEM;
 }
 
-void turnRightSensorOn()
+unsigned int getRightSensorReading()
 {
 	  ADC10CTL0 &= ~ENC; 						//clearing core, stop the sample and conversion sequence
 	  ADC10CTL1 = INCH_5;                       // input A5
 	  ADC10AE0 |= BIT5;                         // PA.1 ADC option select
 	  ADC10CTL0 |= ENC + ADC10SC;            	// Sampling and conversion start, do this for each sensor
 	  __bis_SR_register(CPUOFF + GIE);          // LPM0, ADC10_ISR will force exit
+	  return ADC10MEM;
+}
+
+void isLeftSensorCloseToWall()
+{
+	 if (getLeftSensorReading() < 0x1FF)
+	         P1OUT &= ~0x01;                       // Clear P1.0 LED off
+	 else
+	         P1OUT |= 0x01;                        // Set P1.0 LED on
+}
+
+void isRightSensorCloseToWall()
+{
+	if (getRightSensorReading() < 0x1FF)
+	         P1OUT &= ~0x01;                       // Clear P1.6 LED off
+	else
+	         P1OUT |= 0x01;                        // Set P1.6 LED on
 }
 
 // ADC10 interrupt service routine
