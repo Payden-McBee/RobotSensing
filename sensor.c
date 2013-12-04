@@ -44,17 +44,17 @@ unsigned int getRightSensorReading()
 void isLeftSensorCloseToWall()
 {
 	 if (getLeftSensorReading() < 0x1FF)
-	         P1OUT &= ~0x01;                       // Clear P1.0 LED off
+	         P1OUT &= ~BIT0;                       // Clear P1.0 LED off
 	 else
-	         P1OUT |= 0x01;                        // Set P1.0 LED on
+	         P1OUT |= BIT0;                        // Set P1.0 LED on
 }
 
 void isRightSensorCloseToWall()
 {
 	if (getRightSensorReading() < 0x1FF)
-	         P1OUT &= ~0x01;                       // Clear P1.6 LED off
+	         P1OUT &= ~BIT6;                       // Clear P1.6 LED off
 	else
-	         P1OUT |= 0x01;                        // Set P1.6 LED on
+	         P1OUT |= BIT6;                        // Set P1.6 LED on
 }
 
 // ADC10 interrupt service routine
