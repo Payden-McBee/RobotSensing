@@ -12,7 +12,7 @@ void enableADC10Subsystem();
 void initLEDs();
 unsigned int getLeftSensorReading();
 unsigned int getRightSensorReading();
-void isLeftSensorCloseToWall();
-void isRightSensorCloseToWall();
+unsigned char isLeftSensorCloseToWall();
+unsigned char isRightSensorCloseToWall();
 
 #endif /* SENSOR_H_ */

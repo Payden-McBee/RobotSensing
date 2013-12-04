@@ -41,20 +41,14 @@ unsigned int getRightSensorReading()
 	  return ADC10MEM;
 }
 
-void isLeftSensorCloseToWall()
+unsigned char isLeftSensorCloseToWall()
 {
-	 if (getLeftSensorReading() < 0x1FF)
-	         P1OUT &= ~BIT0;                       // Clear P1.0 LED off
-	 else
-	         P1OUT |= BIT0;                        // Set P1.0 LED on
+	return (getLeftSensorReading() < 0x1FF);
 }
 
-void isRightSensorCloseToWall()
+unsigned char isRightSensorCloseToWall()
 {
-	if (getRightSensorReading() < 0x1FF)
-	         P1OUT &= ~BIT6;                       // Clear P1.6 LED off
-	else
-	         P1OUT |= BIT6;                        // Set P1.6 LED on
+	return (getRightSensorReading() < 0x1FF);
 }
 
 // ADC10 interrupt service routine
