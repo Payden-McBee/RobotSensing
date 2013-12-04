@@ -16,7 +16,7 @@ converts it to a digital number in order to check it against a value to determin
 /*
  * example.c
  */
-void main(void)
+void example(void)
 {
   WDTCTL = WDTPW + WDTHOLD;                 // Stop WDT
 
