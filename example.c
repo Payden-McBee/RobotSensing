@@ -1,7 +1,7 @@
 #include <msp430g2553.h>
 #include "sensor.h"
 
-void main(void)
+void example(void)
 {
   WDTCTL = WDTPW + WDTHOLD;                 // Stop WDT
 
