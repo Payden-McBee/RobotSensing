@@ -26,9 +26,12 @@ void main(void)
 
   for (;;)
   {
-
+	  //gets reading from left sensor and checks against a threshhold value, if the reading is greater
+	  // then LED1 is turned on
 	  isLeftSensorCloseToWall();
 	  
+	  //gets reading from right sensor and checks against a threshhold value, if the reading is greater
+	  // then LED2 is turned on
 	  isRightSensorCloseToWall();
 
   }
