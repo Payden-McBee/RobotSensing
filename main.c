@@ -1,4 +1,5 @@
 #include <msp430g2553.h>
+#include "sensor.h"
 
 int main(void)
 {
@@ -9,8 +10,8 @@ int main(void)
   ADC10CTL1 |= ADC10SSEL1|ADC10SSEL0;                // Select SMCLK
 
   //set up LEDs as outputs
-  P1DIR |= 0x01;                            // Set P1.0 to output direction
-  P1DIR |= 0x06;							// Set P1.6 to output direction
+  P1DIR |= BIT0;                            // Set P1.0 to output direction
+  P1DIR |= BIT6;							// Set P1.6 to output direction
 
   ADC10CTL0 &= ~ENC; 							//clearing core, stop the sample and conversion sequence
   ADC10CTL1 = INCH_4;                       // input A4
@@ -33,10 +34,5 @@ int main(void)
     return 0;
 }
 
-// ADC10 interrupt service routine
-#pragma vector=ADC10_VECTOR
-__interrupt void ADC10_ISR(void)
-{
-  __bic_SR_register_on_exit(CPUOFF);        // Clear CPUOFF bit from 0(SR)
-}
+
 

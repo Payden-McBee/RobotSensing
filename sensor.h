@@ -8,7 +8,8 @@
 #ifndef SENSOR_H_
 #define SENSOR_H_
 
-
+void enableADC10Subsystem();
+void initLEDs();
 
 
 #endif /* SENSOR_H_ */
