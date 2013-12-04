@@ -14,11 +14,21 @@ void main(void)
 
 	  turnLeftSensorOn();
 
-   if (ADC10MEM < 0x1FF)
-      P1OUT &= ~0x01;                       // Clear P1.0 LED off
-    else
-      P1OUT |= 0x01;                        // Set P1.0 LED on
+      if (ADC10MEM < 0x1FF)
+         P1OUT &= ~0x01;                       // Clear P1.0 LED off
+      else
+         P1OUT |= 0x01;                        // Set P1.0 LED on
+
+      _delay_cycles(75); //wait a bit, let it work
+
+      turnRightSensorOn();
+
+      if (ADC10MEM < 0x1FF)
+         P1OUT &= ~0x01;                       // Clear P1.6 LED off
+      else
+         P1OUT |= 0x01;                        // Set P1.6 LED on
   }
+
 
 }
 

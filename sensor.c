@@ -32,7 +32,11 @@ void turnLeftSensorOn()
 
 void turnRightSensorOn()
 {
-
+	  ADC10CTL0 &= ~ENC; 						//clearing core, stop the sample and conversion sequence
+	  ADC10CTL1 = INCH_5;                       // input A5
+	  ADC10AE0 |= BIT5;                         // PA.1 ADC option select
+	  ADC10CTL0 |= ENC + ADC10SC;            	// Sampling and conversion start, do this for each sensor
+	  __bis_SR_register(CPUOFF + GIE);          // LPM0, ADC10_ISR will force exit
 }
 
 // ADC10 interrupt service routine
